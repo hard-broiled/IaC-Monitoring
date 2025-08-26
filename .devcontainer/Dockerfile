@@ -1,13 +1,21 @@
 # Start from an official lightweight Python base
 FROM python:3.12-slim
 
-# Install dev dependencies: make, git, linting tools, etc.
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV VENV_PATH=/workspace/.venv
+
+# Install dev system dependencies and dev tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     git \
     curl \
     bash \
     ca-certificates \
+    unzip \
+    wget \
+    lsb-release \
+    gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 # Optional: install Terraform & lint tools if they’re part of your Makefile hooks

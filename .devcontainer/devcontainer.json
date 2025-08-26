@@ -11,7 +11,10 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-azuretools.vscode-docker",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "HashiCorp.terraform",
+        "GitHub.vscode-github-actions",
+        "shd101wyy.markdown-preview-enhanced"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
