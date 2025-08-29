@@ -20,3 +20,7 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']  # Optional self-scrape
+
+rule_files:
+  - "alert_rules.yml"
+  - "/etc/prometheus/test-rules.yml"

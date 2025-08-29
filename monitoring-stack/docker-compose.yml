@@ -16,7 +16,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus:/etc/prometheus:ro
     networks:
       - monitoring-net
     ports:
@@ -28,6 +28,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./grafana:/var/lib/grafana
+      - ./grafana-provisioning:/etc/grafana/provisioning:ro
     networks:
       - monitoring-net
     ports:
@@ -38,7 +39,7 @@ services:
     container_name: alertmanager
     restart: unless-stopped
     volumes:
-      - ./alertmanager:/etc/alertmanager
+      - ./alertmanager:/etc/alertmanager:ro
     networks:
       - monitoring-net
     ports:

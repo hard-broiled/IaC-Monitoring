@@ -1,0 +1,12 @@
+groups:
+  - name: test-rules
+    interval: 15s
+    rules:
+      - alert: TestAlwaysFiring
+        expr: vector(1)
+        for: 10s
+        labels:
+          severity: info
+        annotations:
+          summary: "Always firing test alert"
+          description: "This alert always fires and should reach Alertmanager"

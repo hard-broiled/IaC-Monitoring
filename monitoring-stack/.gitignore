@@ -227,7 +227,3 @@ outPath/
 
 # Configuration/Data Mounts
 grafana/
-alertmanager/
-prometheus/
-data/
-#provisioning/

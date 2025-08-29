@@ -3,3 +3,4 @@ todo.txt
 dev-log.txt
 scripts/
 .venv/
+.mypy_cache

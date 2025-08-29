@@ -1,0 +1,27 @@
+# Test alert rule that will always fire, to smoke test the prometheus -> alertmanager flow
+# groups:
+# - name: test-rules
+#   interval: 15s
+#   rules:
+#   - alert: TestAlwaysFiring
+#     expr: vector(1)   # always true
+#     for: 10s
+#     labels:
+#       severity: critical
+#     annotations:
+#       summary: "Test Alert"
+#       description: "This is a test alert that always fires."
+
+groups:
+  - name: example-alerts
+    interval: 30s
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+
