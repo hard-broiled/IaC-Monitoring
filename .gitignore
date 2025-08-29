@@ -1,3 +1,5 @@
 # Local Dev Files
 todo.txt
 dev-log.txt
+scripts/
+.venv/

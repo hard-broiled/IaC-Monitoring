@@ -1,3 +1,4 @@
+---
 repos:
   # Terraform Linting
   - repo: https://github.com/antonbabenko/pre-commit-terraform
@@ -5,28 +6,32 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
-      - id: tflint
+      # - id: tflint <- now missing upstream in pre-commit-terraform repo
+  # - repo: https://github.com/terraform-linters/tflint
+  #   rev: v0.55.0
+  #   hooks:
+  #     - id: tflint
   # Python Linting
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 25.1.0
     hooks:
       - id: black
   - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
+    rev: 7.3.0
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.17.1
     hooks:
       - id: mypy
         additional_dependencies: [types-requests]  # example if using requests
   # YAML Linting
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.32.0
+    rev: v1.37.1
     hooks:
       - id: yamllint
   # Dockerfile linting
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
+    rev: v2.13.1-beta
     hooks:
       - id: hadolint

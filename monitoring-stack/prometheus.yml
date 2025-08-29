@@ -1,0 +1,22 @@
+---
+# prometheus.yml
+global:
+  scrape_interval: 15s  # How often to scrape targets by default
+  evaluation_interval: 15s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"  # Name matches Docker network alias
+
+# Scrape configuration
+scrape_configs:
+  - job_name: 'metrics-service'
+    static_configs:
+      - targets: ['metrics-service:8000']  # Docker alias + port
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']  # Optional self-scrape

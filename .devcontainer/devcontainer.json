@@ -1,10 +1,14 @@
 {
   "name": "Monitoring-Stack Dev Environment",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "context": "../monitoring-stack",
+    "args": {
+      "DOCKER_GID": "1001"
+    }
   },
   "remoteUser": "dev",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspace/monitoring-stack",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,13 +21,29 @@
         "shd101wyy.markdown-preview-enhanced"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+        "python.defaultInterpreterPath": "/workspace/monitoring-stack/.venv/bin/python",
         "python.terminal.activateEnvironment": true
       }
     }
   },
   "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"//,
+    // removed docker config mount as there is no current intended use case for local docker cli config/auth for the docker socket use
+    // "source=${env:HOME}/.docker,target=/home/dev/.docker,type=bind"
   ],
-  "postCreateCommand": "make venv"
+  "runArgs": [
+    "--volume=/var/run/docker.sock:/var/run/docker.sock:rw",
+    "--group-add=docker" // Makes sure 'dev' user can talk to Docker
+  ],
+  // Pulls Docker & Terraform CLI in
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      // skip moby installation due to issues with debian based python image
+      "moby": false
+    }//,
+    //  left as example for adding the terraform feature more concisely here, vs manual installs in the Dockerfile
+    //  This would be pursued when using the ubuntu flavor base image
+    //"ghcr.io/devcontainers/features/terraform:1": {}
+  },
+  "postCreateCommand": "make format && make dev"
 }
