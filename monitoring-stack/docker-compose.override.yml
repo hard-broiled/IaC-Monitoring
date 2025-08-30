@@ -13,7 +13,7 @@ services:
       - "8000:8000"
 
   prometheus:
-    image: prom/prometheus:v3.5.0
+    image: prom/prometheus:v3.5.0  # prom/prometheus:v2.49.1
     container_name: prometheus
     restart: unless-stopped
     volumes:
@@ -23,11 +23,15 @@ services:
       - monitoring-net
     ports:
       - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
 
   grafana:
-    image: grafana/grafana-enterprise:11.6
+    image: grafana/grafana-enterprise:11.6  # grafana/grafana:10.2.2
     container_name: grafana
     restart: unless-stopped
+    depends_on: 
+      - prometheus
     volumes:
       - ./grafana:/var/lib/grafana
       - ./grafana-provisioning:/etc/grafana/provisioning:ro

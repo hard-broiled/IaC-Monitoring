@@ -19,7 +19,7 @@
           "refId": "A"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "lines": true,
       "linewidth": 2,
       "fill": 1,
@@ -41,7 +41,7 @@
           "refId": "A"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "colorMode": "value",
       "graphMode": "none",
       "unit": "none",
@@ -58,7 +58,7 @@
           "refId": "A"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "colorMode": "value",
       "graphMode": "none",
       "unit": "none",
@@ -76,7 +76,7 @@
           "legendFormat": "{{instance}}"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "lines": true,
       "linewidth": 2,
       "fill": 1,

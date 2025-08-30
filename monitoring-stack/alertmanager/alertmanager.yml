@@ -20,7 +20,7 @@ receivers:
   - name: 'console'  # placeholder for slack/email receivers
   # Alt dummy receiver option
     webhook_configs:
-        - url: "http:host.docker.internal:5002/"
+        - url: "http://host.docker.internal:5001/"
           send_resolved: true
     # For real Slack/email integration, uncomment and configure:
     # email_configs:
